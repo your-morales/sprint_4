@@ -9,9 +9,27 @@ public class Account {
   }
 
   public boolean checkNameToEmboss() {
-        /*
-             Этот метод должен проверять, что сохранённая через конструктор строка соответствует требованиям.
-             Если строка удовлетворяет условиям, метод возвращает true, иначе — false.
-         */
+    return checkNamelength() && checkNameWhiteSpace() && checkNameSpaceStartEnd();
+  }
+
+  public boolean checkNameWhiteSpace() {
+    int spaceCount = 0;
+    if (name != null) {
+      for (int i = 0; i < name.length(); i++) {
+        if (name.charAt(i) == ' ') {
+          spaceCount++;
+        }
+      }
+      return spaceCount == 1;
+    }
+    return false;
+  }
+
+  public boolean checkNameSpaceStartEnd() {
+    return !name.startsWith(" ") && (!name.endsWith(" "));
+  }
+
+  public boolean checkNamelength() {
+    return (name.length() >= 3) && name.length() < 20;
   }
 }
